@@ -1655,10 +1655,13 @@ MonoBehaviour:
   footLeft: {fileID: 452036281}
   footRight: {fileID: 768589850}
   speed: 2
-  walkSpreadX: 0.2
+  footSeparateAmount: -0.2
   walkSpreadY: 0.4
   walkSpreadZ: 0.6
   walkFootSpeed: 4
+  velocityY: 0
+  gravity: 30
+  jumpImpulse: 10
 --- !u!1 &5686641942122923263
 GameObject:
   m_ObjectHideFlags: 0
