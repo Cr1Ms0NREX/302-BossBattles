@@ -42,16 +42,126 @@ public class TRexMovement : MonoBehaviour
 
     private Quaternion targetRotation;
 
+    // Animator
+    Animator animator;
+    int isWalkingHash;
+    int isWalkingHash1;
+    int isWalkingHash2;
+    int isWalkingHash3;
+    //int isBitingHash;
+    int isJumpingHash;
+
     // Start is called before the first frame update
     void Start()
     {
         pawn = GetComponent<CharacterController>();
         cam = Camera.main;
+
+        // Animator
+        animator = GetComponent<Animator>();
+        isWalkingHash = Animator.StringToHash("isWalking");
+        isWalkingHash1 = Animator.StringToHash("isWalking1");
+        isWalkingHash2 = Animator.StringToHash("isWalking2");
+        isWalkingHash3 = Animator.StringToHash("isWalking3");
+        //isBitingHash = Animator.StringToHash("isBiting");
+        isJumpingHash = Animator.StringToHash("isJumping");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Animator
+        bool isWalking = animator.GetBool(isWalkingHash);
+        bool isWalking1 = animator.GetBool(isWalkingHash1);
+        bool isWalking2 = animator.GetBool(isWalkingHash2);
+        bool isWalking3 = animator.GetBool(isWalkingHash3);
+        bool forwardPressed = Input.GetKey("w");
+        bool leftPressed = Input.GetKey("a");
+        bool downPressed = Input.GetKey("s");
+        bool rightPressed = Input.GetKey("d");
+        //bool isBiting = animator.GetBool(isBitingHash);
+        //bool attackPressed = Input.GetMouseButton(0);
+        bool isJumping = animator.GetBool(isJumpingHash);
+        bool jumpPressed = Input.GetKey("space");
+        // If player presses w key
+        if (!isWalking && forwardPressed)
+        {
+            // Then set the isWalking boolean to be true
+            animator.SetBool(isWalkingHash, true);
+        }
+
+        // If player is not pressing w key
+        if (isWalking && !forwardPressed)
+        { 
+            // Then set the isWalking boolean to be false
+            animator.SetBool(isWalkingHash, false);
+        }
+
+        if (!isWalking1 && leftPressed)
+        {
+            // Then set the isWalking boolean to be true
+            animator.SetBool(isWalkingHash1, true);
+        }
+
+        if (isWalking1 && !leftPressed)
+        {
+            // Then set the isWalking boolean to be false
+            animator.SetBool(isWalkingHash1, false);
+        }
+
+        if (!isWalking2 && downPressed)
+        {
+            // Then set the isWalking boolean to be true
+            animator.SetBool(isWalkingHash2, true);
+        }
+
+        if (isWalking2 && !downPressed)
+        {
+            // Then set the isWalking boolean to be false
+            animator.SetBool(isWalkingHash2, false);
+        }
+
+        if (!isWalking3 && rightPressed)
+        {
+            // Then set the isWalking boolean to be true
+            animator.SetBool(isWalkingHash3, true);
+        }
+
+        if (isWalking3 && !rightPressed)
+        {
+            // Then set the isWalking boolean to be false
+            animator.SetBool(isWalkingHash3, false);
+        }
+
+        // If player presses the left mouse button
+        /*if (!isBiting && attackPressed)
+        {
+            // Then set the is walking boolean to be treu
+            animator.SetBool(isBitingHash, true);
+        }
+        
+        // If player is not pressing the left mouse button
+        if (isBiting && !attackPressed)
+        {
+            // Then set the is walking boolean to be treu
+            animator.SetBool(isBitingHash, false);
+        }*/
+
+        // If player presses the left mouse button
+        if (!isJumping && jumpPressed)
+        {
+            // Then set the is walking boolean to be treu
+            animator.SetBool(isJumpingHash, true);
+        }
+
+        // If player is not pressing the left mouse button
+        if (isJumping && !jumpPressed)
+        {
+            // Then set the is walking boolean to be treu
+            animator.SetBool(isJumpingHash, false);
+        }
+
+        // End Animator
         float v = Input.GetAxis("Vertical");
         float h = Input.GetAxis("Horizontal");
 
@@ -64,6 +174,7 @@ public class TRexMovement : MonoBehaviour
         input = camForward * v + camRight * h;
         if (input.sqrMagnitude > 1) input.Normalize();
 
+        
 
         // Set movement mode based on movement input
         float threshold = .1f;
@@ -133,7 +244,7 @@ public class TRexMovement : MonoBehaviour
 
         // Don't Repeat Yourself (DRY)
 
-        MoveFoot moveFoot = (t, foot) =>
+        /*MoveFoot moveFoot = (t, foot) =>
         {
 
             float y = Mathf.Cos(t) * walkSpreadY; // Vertical Movement
@@ -160,6 +271,6 @@ public class TRexMovement : MonoBehaviour
         walkTime += Time.deltaTime * input.sqrMagnitude * walkFootSpeed;
 
         moveFoot.Invoke(walkTime, footLeft);
-        moveFoot.Invoke(walkTime + Mathf.PI, footRight);
+        moveFoot.Invoke(walkTime + Mathf.PI, footRight);*/
     }
 }
