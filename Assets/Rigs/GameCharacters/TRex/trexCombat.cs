@@ -86,7 +86,13 @@ public class trexCombat : MonoBehaviour
         // Damage them
         foreach (Collider enemy in hitEnemies)
         {
-            enemy.GetComponent<enemyHealth>().TakeDamage(attackDamage);
+            enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+            //GetComponent<PlayerHealth>().ReciveHealth(100);
+        }
+        foreach (Collider food in hitEnemies)
+        {
+            food.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+            GetComponent<PlayerHealth>().ReciveHealth(50);
         }
         //canAttack = false;
     }

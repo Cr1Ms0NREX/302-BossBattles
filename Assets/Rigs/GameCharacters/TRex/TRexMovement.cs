@@ -48,7 +48,6 @@ public class TRexMovement : MonoBehaviour
     int isWalkingHash1;
     int isWalkingHash2;
     int isWalkingHash3;
-    //int isBitingHash;
     int isJumpingHash;
 
     // Start is called before the first frame update
@@ -63,7 +62,6 @@ public class TRexMovement : MonoBehaviour
         isWalkingHash1 = Animator.StringToHash("isWalking1");
         isWalkingHash2 = Animator.StringToHash("isWalking2");
         isWalkingHash3 = Animator.StringToHash("isWalking3");
-        //isBitingHash = Animator.StringToHash("isBiting");
         isJumpingHash = Animator.StringToHash("isJumping");
     }
 
@@ -79,8 +77,6 @@ public class TRexMovement : MonoBehaviour
         bool leftPressed = Input.GetKey("a");
         bool downPressed = Input.GetKey("s");
         bool rightPressed = Input.GetKey("d");
-        //bool isBiting = animator.GetBool(isBitingHash);
-        //bool attackPressed = Input.GetMouseButton(0);
         bool isJumping = animator.GetBool(isJumpingHash);
         bool jumpPressed = Input.GetKey("space");
         // If player presses w key
@@ -132,20 +128,6 @@ public class TRexMovement : MonoBehaviour
             // Then set the isWalking boolean to be false
             animator.SetBool(isWalkingHash3, false);
         }
-
-        // If player presses the left mouse button
-        /*if (!isBiting && attackPressed)
-        {
-            // Then set the is walking boolean to be treu
-            animator.SetBool(isBitingHash, true);
-        }
-        
-        // If player is not pressing the left mouse button
-        if (isBiting && !attackPressed)
-        {
-            // Then set the is walking boolean to be treu
-            animator.SetBool(isBitingHash, false);
-        }*/
 
         // If player presses the left mouse button
         if (!isJumping && jumpPressed)
